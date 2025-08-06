@@ -1,0 +1,89 @@
+2025-07-30 12:58:25,514 - __main__ - INFO - Starting calendar forecast for client: bestself
+2025-07-30 12:58:25,514 - __main__ - INFO - Generating individual forecast events...
+2025-07-30 12:58:25,514 - services.forecast_service - INFO - Generating forecast from 2025-07-30 to 2025-10-29
+2025-07-30 12:58:26,059 - httpx - INFO - HTTP Request: GET https://hnqkqqyqxilfxmijsmbf.supabase.co/rest/v1/vendors?select=display_name%2Cforecast_frequency%2Cforecast_day%2Cforecast_amount%2Cforecast_confidence&client_id=eq.bestself&display_name=neq.None&forecast_frequency=neq.irregular "HTTP/2 200 OK"
+2025-07-30 12:58:26,066 - services.forecast_service - INFO - Found 11 vendors with forecast configs
+2025-07-30 12:58:26,066 - core.calendar_forecasting - INFO - Generating events for Amazon Revenue: bi_weekly, day 2, $44792.06
+2025-07-30 12:58:26,066 - core.calendar_forecasting - INFO - Generated 7 bi-weekly events for Amazon Revenue on Tuesdays
+2025-07-30 12:58:26,066 - core.calendar_forecasting - INFO - Generating events for Shopify Revenue: monthly, day 21, $200.5
+2025-07-30 12:58:26,066 - core.calendar_forecasting - INFO - Generated 3 monthly events for Shopify Revenue on day 21
+2025-07-30 12:58:26,066 - core.calendar_forecasting - INFO - Generating events for Faire Revenue: monthly, day 7, $219.47
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for Faire Revenue on day 7
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for Wise Transfers: monthly, day 20, $-5695.82
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for Wise Transfers on day 20
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for Armbrust Expenses: monthly, day 7, $-4317.08
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for Armbrust Expenses on day 7
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for Affirm Payments: monthly, day 10, $84.23
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for Affirm Payments on day 10
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for BestSelf Revenue: monthly, day 24, $2444.04
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for BestSelf Revenue on day 24
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for TikTok Revenue: monthly, day 24, $41.49
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for TikTok Revenue on day 24
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for Wire Fees: monthly, day 28, $-15.0
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for Wire Fees on day 28
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for Stripe Revenue: monthly, day 21, $229.23
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for Stripe Revenue on day 21
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generating events for American Express Payments: monthly, day 12, $-47179.87
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 3 monthly events for American Express Payments on day 12
+2025-07-30 12:58:26,067 - core.calendar_forecasting - INFO - Generated 37 total forecast events
+2025-07-30 12:58:26,184 - httpx - INFO - HTTP Request: GET https://hnqkqqyqxilfxmijsmbf.supabase.co/rest/v1/forecast_overrides?select=%2A&client_id=eq.bestself&override_date=gte.2025-08-05T00%3A00%3A00%2B00%3A00&override_date=lte.2025-10-28T00%3A00%3A00%2B00%3A00 "HTTP/2 404 Not Found"
+2025-07-30 12:58:26,184 - core.forecast_overrides - ERROR - Error getting overrides: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation "public.forecast_overrides" does not exist'}
+2025-07-30 12:58:26,184 - services.forecast_service - INFO - Generated 37 forecast events
+2025-07-30 12:58:26,185 - __main__ - INFO - Calendar forecast complete!
+
+📅 Calendar Forecast Events (37 events):
+================================================================================
+
+August 2025
+----------------------------------------
+08/05 Tue - Amazon Revenue            📈 +$44,792.06 (77%) 
+08/07 Thu - Faire Revenue               📈 +$219.47  
+08/07 Thu - Armbrust Expenses         📉 $-4,317.08  
+08/10 Sun - Affirm Payments              📈 +$84.23  
+08/12 Tue - American Express Payments 📉 $-47,179.87  
+08/19 Tue - Amazon Revenue            📈 +$44,792.06 (77%) 
+08/20 Wed - Wise Transfers            📉 $-5,695.82  
+08/21 Thu - Shopify Revenue             📈 +$200.50  
+08/21 Thu - Stripe Revenue              📈 +$229.23  
+08/24 Sun - BestSelf Revenue          📈 +$2,444.04  
+08/24 Sun - TikTok Revenue               📈 +$41.49  
+08/28 Thu - Wire Fees                    📉 $-15.00  
+----------------------------------------
+
+September 2025
+----------------------------------------
+09/02 Tue - Amazon Revenue            📈 +$44,792.06 (77%) 
+09/07 Sun - Faire Revenue               📈 +$219.47  
+09/07 Sun - Armbrust Expenses         📉 $-4,317.08  
+09/10 Wed - Affirm Payments              📈 +$84.23  
+09/12 Fri - American Express Payments 📉 $-47,179.87  
+09/16 Tue - Amazon Revenue            📈 +$44,792.06 (77%) 
+09/20 Sat - Wise Transfers            📉 $-5,695.82  
+09/21 Sun - Shopify Revenue             📈 +$200.50  
+09/21 Sun - Stripe Revenue              📈 +$229.23  
+09/24 Wed - BestSelf Revenue          📈 +$2,444.04  
+09/24 Wed - TikTok Revenue               📈 +$41.49  
+09/28 Sun - Wire Fees                    📉 $-15.00  
+09/30 Tue - Amazon Revenue            📈 +$44,792.06 (77%) 
+----------------------------------------
+
+October 2025
+----------------------------------------
+10/07 Tue - Faire Revenue               📈 +$219.47  
+10/07 Tue - Armbrust Expenses         📉 $-4,317.08  
+10/10 Fri - Affirm Payments              📈 +$84.23  
+10/12 Sun - American Express Payments 📉 $-47,179.87  
+10/14 Tue - Amazon Revenue            📈 +$44,792.06 (77%) 
+10/20 Mon - Wise Transfers            📉 $-5,695.82  
+10/21 Tue - Shopify Revenue             📈 +$200.50  
+10/21 Tue - Stripe Revenue              📈 +$229.23  
+10/24 Fri - BestSelf Revenue          📈 +$2,444.04  
+10/24 Fri - TikTok Revenue               📈 +$41.49  
+10/28 Tue - Amazon Revenue            📈 +$44,792.06 (77%) 
+10/28 Tue - Wire Fees                    📉 $-15.00  
+
+================================================================================
+📊 Total Forecast Summary:
+   Deposits:    $323,201.30
+   Withdrawals: $171,623.31
+   Net:         $151,577.99

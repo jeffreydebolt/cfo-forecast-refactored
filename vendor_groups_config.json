@@ -1,0 +1,29 @@
+{
+  "bestself": {
+    "Shopify Revenue": {
+      "vendor_display_names": ["Shopify Revenue", "BestSelf Revenue", "Affirm Payments"],
+      "is_revenue": true,
+      "category": "E-commerce Revenue"
+    },
+    "Amazon Revenue": {
+      "vendor_display_names": ["Amazon Revenue"],
+      "is_revenue": true,
+      "category": "E-commerce Revenue"
+    },
+    "Other Revenue": {
+      "vendor_display_names": ["TikTok Revenue", "Stripe Revenue", "Faire Revenue"],
+      "is_revenue": true,
+      "category": "E-commerce Revenue"
+    },
+    "Credit Card Payments": {
+      "vendor_display_names": ["American Express Payments"],
+      "is_revenue": false,
+      "category": "Credit Card Payments"
+    },
+    "Business Expenses": {
+      "vendor_display_names": ["Armbrust Expenses", "Wise Transfers", "Wire Fees"],
+      "is_revenue": false,
+      "category": "Operating Expenses"
+    }
+  }
+}
