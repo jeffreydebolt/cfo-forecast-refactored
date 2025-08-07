@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 
 export async function POST(request: NextRequest) {
   try {
+    // Dynamic import to avoid build-time issues
+    const { createClient } = await import('@supabase/supabase-js')
+    
     // Check environment variables
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
       return NextResponse.json({ 
@@ -14,6 +16,7 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_SUPABASE_URL,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     )
+
     const formData = await request.formData()
     const clientName = formData.get('clientName') as string
     const startingBalance = formData.get('startingBalance') as string
@@ -25,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     // Read CSV file
     const csvText = await csvFile.text()
-    const lines = csvText.split('\\n')
+    const lines = csvText.split('\n')
     const headers = lines[0].split(',')
     
     // Basic CSV validation
