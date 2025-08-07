@@ -1,21 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: NextRequest) {
   try {
     // Dynamic import to avoid build-time issues
-    const { createClient } = await import('@supabase/supabase-js')
+    const { getSupabaseClient } = await import('@/lib/supabase')
     
-    // Check environment variables
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    let supabase
+    try {
+      supabase = getSupabaseClient()
+    } catch (error) {
       return NextResponse.json({ 
         error: 'Server configuration error. Please contact support.' 
       }, { status: 500 })
     }
-
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    )
 
     const formData = await request.formData()
     const clientName = formData.get('clientName') as string
