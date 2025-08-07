@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useDropzone } from 'react-dropzone'
+import { parseCSV } from '@/utils/csv-parser'
 
 export default function NewClientPage() {
   const [clientName, setClientName] = useState('')
@@ -33,22 +34,29 @@ export default function NewClientPage() {
     setUploading(true)
 
     try {
-      // Create FormData to send file
-      const formData = new FormData()
-      formData.append('clientName', clientName)
-      formData.append('startingBalance', startingBalance)
-      formData.append('csvFile', csvFile)
-
-      // Call the API to upload and process CSV
-      const response = await fetch('/api/upload-csv', {
+      // Parse CSV client-side
+      const { transactions, skipped } = await parseCSV(csvFile, clientName)
+      
+      if (transactions.length === 0) {
+        throw new Error('No valid transactions found in CSV')
+      }
+      
+      // Send parsed transactions to API
+      const response = await fetch('/api/save-transactions', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          transactions,
+          clientName
+        }),
       })
 
       const result = await response.json()
 
       if (response.ok) {
-        alert(`Client "${clientName}" created successfully!\\n\\nImported: ${result.imported} transactions\\nSkipped: ${result.skipped} transactions\\n\\nNext: Review vendor mappings.`)
+        alert(`Client "${clientName}" created successfully!\\n\\nImported: ${transactions.length} transactions\\nSkipped: ${skipped} transactions\\n\\nNext: Review vendor mappings.`)
         router.push(`/dashboard/${clientName}/vendor-mapping`)
       } else {
         throw new Error(result.error || 'Upload failed')
@@ -56,7 +64,7 @@ export default function NewClientPage() {
 
     } catch (error) {
       setUploading(false)
-      alert('Error uploading file. Please try again.')
+      alert(error instanceof Error ? error.message : 'Error uploading file. Please try again.')
     }
   }
 
