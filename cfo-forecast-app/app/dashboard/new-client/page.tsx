@@ -59,7 +59,8 @@ export default function NewClientPage() {
         alert(`Client "${clientName}" created successfully!\\n\\nImported: ${transactions.length} transactions\\nSkipped: ${skipped} transactions\\n\\nNext: Review vendor mappings.`)
         router.push(`/dashboard/${clientName}/vendor-mapping`)
       } else {
-        throw new Error(result.error || 'Upload failed')
+        const errorMsg = result.details ? `${result.error}: ${result.details}` : result.error || 'Upload failed'
+        throw new Error(errorMsg)
       }
 
     } catch (error: any) {
