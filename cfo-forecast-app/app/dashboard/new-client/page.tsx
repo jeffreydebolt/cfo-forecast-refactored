@@ -48,8 +48,8 @@ export default function NewClientPage() {
       const result = await response.json()
 
       if (response.ok) {
-        alert(`Client "${clientName}" created successfully!\\n\\nImported: ${result.imported} transactions\\nSkipped: ${result.skipped} transactions\\n\\nNext: Review vendor mappings and generate forecast.`)
-        router.push('/dashboard')
+        alert(`Client "${clientName}" created successfully!\\n\\nImported: ${result.imported} transactions\\nSkipped: ${result.skipped} transactions\\n\\nNext: Review vendor mappings.`)
+        router.push(`/dashboard/${clientName}/vendor-mapping`)
       } else {
         throw new Error(result.error || 'Upload failed')
       }
