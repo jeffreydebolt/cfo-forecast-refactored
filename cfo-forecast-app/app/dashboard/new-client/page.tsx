@@ -62,9 +62,10 @@ export default function NewClientPage() {
         throw new Error(result.error || 'Upload failed')
       }
 
-    } catch (error) {
+    } catch (error: any) {
       setUploading(false)
-      alert(error instanceof Error ? error.message : 'Error uploading file. Please try again.')
+      const errorMessage = error?.details || (error instanceof Error ? error.message : 'Error uploading file. Please try again.')
+      alert(errorMessage)
     }
   }
 

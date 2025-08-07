@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
         console.error('Database error:', error)
         return NextResponse.json({ 
           error: 'Failed to save transactions',
+          details: error.message,
           inserted: totalInserted 
         }, { status: 500 })
       }
@@ -46,6 +47,9 @@ export async function POST(request: NextRequest) {
     
   } catch (error) {
     console.error('Server error:', error)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+    return NextResponse.json({ 
+      error: 'Server error',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 })
   }
 }
