@@ -229,7 +229,7 @@ export default function VendorMappingPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <input
                         type="text"
-                        className="text-sm border-gray-300 rounded-md w-full"
+                        className="text-sm border border-gray-300 rounded-md w-full px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                         value={getCurrentDisplayName(vendor)}
                         onChange={(e) => handleMappingChange(vendor.vendor_name, e.target.value)}
                       />
