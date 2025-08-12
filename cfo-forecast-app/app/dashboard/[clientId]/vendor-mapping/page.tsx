@@ -143,8 +143,8 @@ export default function VendorMappingPage() {
 
       alert('Vendor mappings saved successfully!')
       
-      // Navigate to pattern review
-      router.push(`/dashboard/${clientId}/pattern-review`)
+      // Navigate to improved pattern review
+      router.push(`/dashboard/${clientId}/pattern-review-v2`)
       
     } catch (error) {
       console.error('Error saving mappings:', error)
