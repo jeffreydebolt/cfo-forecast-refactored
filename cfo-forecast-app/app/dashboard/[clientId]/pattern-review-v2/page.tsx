@@ -62,30 +62,8 @@ export default function PatternReviewV2Page() {
 
   const loadPatterns = async () => {
     try {
-      // First check if we have existing pattern reviews
-      const { data: existingReviews } = await supabase
-        .from('pattern_reviews')
-        .select('*')
-        .eq('client_id', clientId)
-
-      if (existingReviews && existingReviews.length > 0) {
-        // Load from saved state
-        const reviewMap = new Map(existingReviews.map(r => [r.vendor_group, r]))
-        
-        // Get recent transactions for current pattern
-        if (existingReviews.length > 0) {
-          await loadTransactionsForPattern(existingReviews[0].vendor_group)
-        }
-        
-        setPatterns(existingReviews)
-        
-        // Find first pending item
-        const firstPendingIndex = existingReviews.findIndex(p => p.status === 'pending')
-        setCurrentIndex(firstPendingIndex >= 0 ? firstPendingIndex : 0)
-      } else {
-        // Fresh analysis needed
-        await analyzeAndSavePatterns()
-      }
+      // Skip pattern_reviews table - analyze transactions directly
+      await analyzeAndSavePatterns()
     } catch (error) {
       console.error('Error loading patterns:', error)
     } finally {
@@ -142,19 +120,11 @@ export default function PatternReviewV2Page() {
     // Sort by total value descending
     patternRecords.sort((a, b) => b.total_transaction_value - a.total_transaction_value)
 
-    // Save to database
-    const { error } = await supabase
-      .from('pattern_reviews')
-      .insert(patternRecords.map(p => ({
-        ...p,
-        client_id: clientId
-      })))
-
-    if (!error) {
-      setPatterns(patternRecords)
-      if (patternRecords.length > 0) {
-        await loadTransactionsForPattern(patternRecords[0].vendor_group)
-      }
+    // Skip saving to database - just use in-memory patterns
+    console.log(`Generated ${patternRecords.length} pattern records`)
+    setPatterns(patternRecords)
+    if (patternRecords.length > 0) {
+      await loadTransactionsForPattern(patternRecords[0].vendor_group)
     }
   }
 
@@ -291,13 +261,9 @@ export default function PatternReviewV2Page() {
         }
       }
 
-      // Update in database
-      const { error } = await supabase
-        .from('pattern_reviews')
-        .update(updateData)
-        .eq('client_id', clientId)
-        .eq('vendor_group', currentPattern.vendor_group)
-
+      // Skip database update - just update local state
+      const error = false  // No error since we're not using database
+      
       if (!error) {
         // Update local state
         setPatterns(prev => prev.map(p => 
