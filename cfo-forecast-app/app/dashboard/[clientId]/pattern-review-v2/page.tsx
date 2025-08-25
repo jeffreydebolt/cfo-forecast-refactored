@@ -15,6 +15,7 @@ type PatternReview = {
   confidence: number
   total_transaction_value: number
   transaction_count: number
+  reviewed_at?: string
   recent_transactions?: Array<{
     transaction_date: string
     amount: number

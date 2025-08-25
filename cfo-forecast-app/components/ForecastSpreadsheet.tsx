@@ -203,7 +203,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     const rows: any[] = []
     
     // Cash balances row
-    const cashBalanceRow = {
+    const cashBalanceRow: any = {
       id: 'beginning_cash',
       category: 'cash',
       subcategory: 'beginning_balance',
@@ -241,7 +241,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     // Revenue rows
     const revenueGroups = vendorGroups.filter(vg => vg.category === 'revenue')
     revenueGroups.forEach(vg => {
-      const row = {
+      const row: any = {
         id: `vendor_group_${vg.id}`,
         vendor_group_id: vg.id,
         category: vg.category,
@@ -260,7 +260,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     })
     
     // Total Revenue row
-    const totalRevenueRow = {
+    const totalRevenueRow: any = {
       id: 'total_revenue',
       display_name: 'Total Revenue',
       is_total: true,
@@ -293,7 +293,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     
     const operatingGroups = vendorGroups.filter(vg => vg.category === 'operating')
     operatingGroups.forEach(vg => {
-      const row = {
+      const row: any = {
         id: `vendor_group_${vg.id}`,
         vendor_group_id: vg.id,
         category: vg.category,
@@ -312,7 +312,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     })
     
     // Total Outflows row
-    const totalOutflowsRow = {
+    const totalOutflowsRow: any = {
       id: 'total_outflows',
       display_name: 'Total Outflows',
       is_total: true,
@@ -330,7 +330,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     rows.push(totalOutflowsRow)
     
     // Net Operating CF
-    const netOperatingRow = {
+    const netOperatingRow: any = {
       id: 'net_operating_cf',
       display_name: 'Net Operating CF',
       is_total: true,
@@ -360,7 +360,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     
     const financingGroups = vendorGroups.filter(vg => vg.category === 'financing')
     financingGroups.forEach(vg => {
-      const row = {
+      const row: any = {
         id: `vendor_group_${vg.id}`,
         vendor_group_id: vg.id,
         category: vg.category,
@@ -379,7 +379,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     })
     
     // Net Financing CF
-    const netFinancingRow = {
+    const netFinancingRow: any = {
       id: 'net_financing_cf',
       display_name: 'Net Financing CF',
       is_total: true
@@ -403,7 +403,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
     })
     
     // Ending Cash
-    const endingCashRow = {
+    const endingCashRow: any = {
       id: 'ending_cash',
       display_name: 'Ending Cash',
       is_total: true,
@@ -432,12 +432,12 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
         field: 'display_name',
         pinned: 'left',
         width: 200,
-        cellStyle: (params) => {
-          if (params.data?.is_section_header) return { fontWeight: 'bold', fontSize: '14px' }
-          if (params.data?.is_subsection_header) return { fontWeight: '600' }
-          if (params.data?.is_total) return { fontWeight: 'bold', borderTop: '1px solid #ccc' }
-          if (params.data?.is_spacer) return { borderTop: 'none', borderBottom: 'none' }
-          return {}
+        cellStyle: (params: any) => {
+          if (params.data?.is_section_header) return { fontWeight: 'bold', fontSize: '14px' } as any
+          if (params.data?.is_subsection_header) return { fontWeight: '600' } as any
+          if (params.data?.is_total) return { fontWeight: 'bold', borderTop: '1px solid #ccc' } as any
+          if (params.data?.is_spacer) return { borderTop: 'none', borderBottom: 'none' } as any
+          return {} as any
         }
       }
     ]
@@ -448,7 +448,7 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
         field: period.start_date,
         width: 120,
         type: 'numericColumn',
-        cellRenderer: (params) => {
+        cellRenderer: (params: any) => {
           if (params.data?.is_spacer || params.data?.is_section_header || params.data?.is_subsection_header) {
             return ''
           }
@@ -466,10 +466,10 @@ const ForecastSpreadsheet: React.FC<ForecastSpreadsheetProps> = ({ clientId }) =
           // Non-editable calculated cells
           return React.createElement(CurrencyCellRenderer, params)
         },
-        cellStyle: (params) => {
-          if (params.data?.is_total) return { fontWeight: 'bold', borderTop: '1px solid #ccc' }
-          if (params.data?.is_header) return { fontWeight: 'bold', backgroundColor: '#f8f9fa' }
-          return {}
+        cellStyle: (params: any) => {
+          if (params.data?.is_total) return { fontWeight: 'bold', borderTop: '1px solid #ccc' } as any
+          if (params.data?.is_header) return { fontWeight: 'bold', backgroundColor: '#f8f9fa' } as any
+          return {} as any
         }
       })
     })
