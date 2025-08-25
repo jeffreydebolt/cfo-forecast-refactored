@@ -121,7 +121,7 @@ export default function PatternReviewV2Page() {
     // Analyze each group
     const patternRecords: PatternReview[] = []
     
-    for (const [displayName, txs] of groupedByDisplay.entries()) {
+    groupedByDisplay.forEach((txs, displayName) => {
       const totalValue = txs.reduce((sum, tx) => sum + Math.abs(tx.amount), 0)
       const analysis = analyzePattern(txs)
       
@@ -136,7 +136,7 @@ export default function PatternReviewV2Page() {
         total_transaction_value: totalValue,
         transaction_count: txs.length
       })
-    }
+    })
 
     // Sort by total value descending
     patternRecords.sort((a, b) => b.total_transaction_value - a.total_transaction_value)
